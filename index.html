@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hayden Field</title>
+<meta name="description" content="Hayden Field is a senior AI reporter at The Verge.">
+
+<!-- Google Fonts: Manrope & Press Start 2P (for 8-bit button) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     ULTRA-MINIMALIST TYPOGRAPHY & LAYOUT
+     Single column, header on top.
+     ============================================================ */
+  :root {
+    --bg: #ffffff;
+    --text: #000000;
+    --text-light: #555555;
+    --link: #0000ff;
+    
+    /* New variable for the button background */
+    --btn-light-blue: #ADD8E6; /* Light Blue for the button */
+    
+    /* Helvetica for the body/entire site */
+    --font-stack: "Helvetica", "Helvetica Neue", Arial, sans-serif;
+    /* Manrope for header/navigation */
+    --font-header: 'Manrope', sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  * { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+  }
+
+  /* Custom Blocky XP Cursor
+     Rendered directly in code. Uses crispEdges to force a staircase pixelated look.
+  */
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-stack);
+    font-size: 18px; 
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    cursor: url('cursor.png'), auto;
+  }
+
+  a, button, .resume-btn {
+    cursor: url('cursor.png'), pointer;
+  }
+
+  a {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  a:hover {
+    color: var(--link);
+    text-decoration-color: var(--link);
+  }
+
+  /* ---------- Header & Navigation ---------- */
+  .site-header {
+    padding: 3rem 5vw 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline; /* Aligns name baseline directly with nav text baseline */
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .logo {
+    font-family: var(--font-stack); /* Switched to Helvetica */
+    font-size: 3.1rem; /* Scaled up by 10% */
+    font-weight: bold; 
+    letter-spacing: -0.03em;
+    color: var(--text);
+    cursor: url('cursor.png'), default;
+    line-height: 1;
+  }
+
+  .top-nav {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+
+  .top-nav a {
+    font-family: var(--font-header);
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .top-nav a:hover, 
+  .top-nav a.active {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 6px;
+  }
+
+  /* ---------- Layout Grid (Single Column) ---------- */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 5vw 5vw;
+  }
+
+  /* ---------- Content Sections ---------- */
+  .content-section {
+    margin-bottom: 5rem;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Formatting for text sections like Bio and Contact */
+  .text-content p {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Embed Containers */
+  .embed-container {
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  /* 8-BIT RESUME BUTTON */
+  .resume-btn-container {
+    text-align: center;
+    margin-top: 4rem; 
+  }
+
+  .resume-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    color: #000000 !important; /* Force black text */
+    text-decoration: none !important;
+    text-transform: none; /* No forceful capitalization */
+    font-family: 'Press Start 2P', var(--font-mono); /* 8-bit font */
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    background-color: var(--btn-light-blue); /* Updated light blue */
+    
+    /* 8-bit blocky borders and 3D shading */
+    border: 4px solid #000000;
+    box-shadow: 
+      inset 4px 4px 0px 0px #ffffff, /* Top/left highlight */
+      inset -4px -4px 0px 0px #4682B4, /* Bottom/right shadow */
+      6px 6px 0px 0px #000000; /* Outer drop shadow for extra pop */
+      
+    transition: transform 0.1s, box-shadow 0.1s, filter 0.1s;
+  }
+
+  .resume-btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 
+      inset 4px 4px 0px 0px #ffffff,
+      inset -4px -4px 0px 0px #4682B4,
+      4px 4px 0px 0px #000000;
+    filter: brightness(1.05);
+  }
+
+  .resume-btn:active {
+    transform: translate(6px, 6px);
+    box-shadow: 
+      inset 4px 4px 0px 0px #ffffff,
+      inset -4px -4px 0px 0px #4682B4,
+      0px 0px 0px 0px #000000;
+  }
+
+  /* Minimalist Article List */
+  .article-list {
+    list-style: none;
+  }
+
+  .article-item {
+    margin-bottom: 1.5rem;
+  }
+
+  .article-meta {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .article-title {
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  .article-title a {
+    text-decoration: none;
+  }
+
+  /* OVERRIDES FOR WRITING TAB (Dense, paragraph-sized text) */
+  #writing .article-item {
+    margin-bottom: 0.8rem;
+  }
+
+  #writing .article-title {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* Section Header styling for Writing Tab */
+  .writing-section-head {
+    font-family: var(--font-header);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-top: 3.5rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+  }
+
+  /* ---------- Global Link Overrides for Writing & TV/Podcasts ---------- */
+  /* Keeps links permanently underlined & blue */
+  #writing a,
+  #writing .article-title a,
+  #tv-and-podcasts a,
+  #tv-and-podcasts .article-title a {
+    color: var(--link);
+    text-decoration: underline;
+    text-decoration-color: var(--link);
+    transition: opacity 0.2s ease, text-decoration-thickness 0.2s ease;
+  }
+
+  /* Subtle hover effect: slightly faded with a thicker underline */
+  #writing a:hover,
+  #writing .article-title a:hover,
+  #tv-and-podcasts a:hover,
+  #tv-and-podcasts .article-title a:hover {
+    opacity: 0.7;
+    text-decoration-thickness: 2px;
+  }
+
+  /* Ensure non-linked text inside article titles (like Outlet names) stays black */
+  .article-title {
+    color: var(--text); 
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top: 5rem;
+    font-size: 0.875rem;
+    color: var(--text-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    padding-top: 2rem;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .social-icons a {
+    color: var(--text); /* Solid black */
+    display: inline-flex;
+    text-decoration: none; /* overrides default a tag */
+    transition: color 0.2s ease, transform 0.1s ease;
+  }
+
+  .social-icons a:hover {
+    color: var(--link); /* Highlights blue on hover */
+    transform: scale(1.1);
+  }
+
+  .social-icons svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+  }
+
+  .footer-links button {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-family: inherit;
+    font-size: inherit;
+    cursor: url('cursor.png'), pointer;
+    text-decoration: none;
+  }
+
+  .footer-links button:hover {
+    color: var(--text);
+    text-decoration: underline;
+  }
+
+  /* ---------- Click Sparkles CSS ---------- */
+  .click-sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    font-size: 18px;
+    animation: sparkle-burst 0.7s ease-out forwards;
+  }
+
+  @keyframes sparkle-burst {
+    0% { 
+      opacity: 1; 
+      transform: translate(-50%, -50%) scale(0.5) rotate(0deg); 
+    }
+    100% { 
+      opacity: 0; 
+      transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.3) rotate(45deg); 
+    }
+  }
+
+  /* ============================================================
+     '90S MODE CSS
+     ============================================================ */
+  #toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #000;
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 10px 15px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 100;
+    pointer-events: none;
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* Retro override for 90s mode */
+  body.y2k {
+    background-image: radial-gradient(circle, #ff00ff 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-color: #00ffff;
+    color: #0000ff;
+  }
+
+  .sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 60;
+    font-size: 20px;
+    animation: sparkle-pop 600ms ease-out forwards;
+  }
+  @keyframes sparkle-pop {
+    0% { opacity: 1; transform: translate(-50%,-50%) scale(0.5); }
+    100% { opacity: 0; transform: translate(-50%,-100%) scale(1.5); }
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .site-header { justify-content: center; text-align: center; }
+    .top-nav { justify-content: center; gap: 1rem; }
+    .article-title { font-size: 1.25rem; }
+    footer { flex-direction: column; gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER & TOP NAV -->
+<header class="site-header">
+  <div class="logo">HAYDEN FIELD</div>
+  <nav class="top-nav" id="main-nav">
+    <a href="#about">About</a>
+    <a href="#tv-and-podcasts">TV & Podcasts</a>
+    <a href="#writing" class="active">Writing</a>
+    <a href="#speaking">Speaking</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="container">
+  
+  <main class="content">
+
+    <!-- ABOUT SECTION (Hidden by default) -->
+    <section id="about" class="content-section text-content" style="display: none;">
+      
+      <!-- The text is injected via JavaScript below to bypass auto-citation bugs -->
+      <p id="bio-p1"></p>
+      <p id="bio-p2"></p>
+      
+      <!-- CENTERED RECTANGLE RESUME BUTTON -->
+      <div class="resume-btn-container">
+        <!-- Replaced spaces with encoded %20 -->
+        <a href="Hayden%20Field%20Resume%202026%20Final.pdf" target="_blank" class="resume-btn">Resumé</a>
+      </div>
+    </section>
+    
+    <!-- WRITING SECTION (Active by default) -->
+    <section id="writing" class="content-section">
+      <div class="text-content">
+        <p>Hayden has been on the AI beat for six years, and her reporting has appeared in The Verge, CNBC, Morning Brew, MIT Technology Review, WIRED UK, Protocol (the Politico offshoot), Digital Trends, Fortune, Atlanta Magazine, The Atlanta Journal-Constitution and more. Below is a small selection of pieces.</p>
+      </div>
+
+      <div class="writing-section-head">Features & Longform</div>
+      <ul class="article-list">
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/937028/military-ai-warfare-red-lines" target="_blank">AI warfare is already here</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/917380/ai-monetization-anthropic-openai-token-economics-revenue" target="_blank">You’re about to feel the AI money squeeze</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/887309/openai-anthropic-dod-military-pentagon-contract-sam-altman-hegseth" target="_blank">How OpenAI caved to the Pentagon on AI surveillance</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/885963/anthropic-dod-pentagon-tech-workers-ai-labs-react" target="_blank">We don’t have to have unsupervised killer robots</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/883456/anthropic-pentagon-department-of-defense-negotiations" target="_blank">Inside Anthropic’s existential negotiations with the Pentagon</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/836335/anthropic-societal-impacts-team-ai-claude-effects" target="_blank">It’s their job to keep AI from destroying everything</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/cs/features/831818/ai-mercor-handshake-scale-surge-staffing-companies" target="_blank">Feeding the machine</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/health/718049/google-med-gemini-basilar-ganglia-paper-typo-hallucination" target="_blank">Google's healthcare AI made up a body part — what happens when doctors don't notice?</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://onezero.medium.com/the-troubling-legacy-of-a-biased-data-set-2967ffdd1035" target="_blank">The troubling legacy of a biased data set</a> (<em>OneZero</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://medium.com/@haydenfield/inside-the-secret-world-of-fake-ids-how-21-college-students-made-thousands-in-9-months-dbb535835df2" target="_blank">Inside the secret world of fake IDs</a> (<em>Medium</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <!-- UPDATED METADATA to Entrepreneur Magazine PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.entrepreneur.com/starting-a-business/if-business-is-booming-why-is-main-street-america-still/322979" target="_blank">If business is booming, why is Main Street America still hurting?</a> (<em>Entrepreneur Magazine</em>)</h3>
+        </li>
+      </ul>
+
+      <div class="writing-section-head">Industry Trends</div>
+      <ul class="article-list">
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/965294/openai-apple-trade-secrets-lawsuit-sam-altman-ipo" target="_blank">Sam Altman didn't need another lawsuit</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/959033/health-location-data-protection-act-ai-warren-scanlon" target="_blank">Lawmakers want to ban AI companies from selling your health data</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/942242/microsoft-build-ai-agents-openai-competition" target="_blank">Microsoft and OpenAI broke up — now they're ready to fight</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/934478/if-google-cant-make-ai-agents-useful-maybe-no-one-can" target="_blank">If Google can't make AI agents useful, maybe no one can</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/932464/musk-v-altman-proved-that-ai-is-led-by-the-wrong-people" target="_blank">Musk v. Altman proved that AI is led by the wrong people</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/915662/john-ternus-apple-ceo-tim-cook-ai-problem-siri" target="_blank">John Ternus’ first big problem is AI</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/908513/the-vibes are-off-at-openai" target="_blank">The vibes are off at OpenAI</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/902368/openai-sora-dead-ai-video-generation-competition" target="_blank">Why OpenAI killed Sora</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST (Define 'alive') -->
+          <h3 class="article-title"><a href="https://www.theverge.com/report/883769/anthropic-claude-conscious-alive-moral-patient-constitution" target="_blank">Does Anthropic think Claude is alive? Define ‘alive’</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/report/874308/anthropic-claude-code-opus-hype-moment" target="_blank">Claude has been having a moment — can it keep it up?</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/872961/humans-infiltrating-moltbook-openclaw-reddit-ai-bots" target="_blank">Humans are infiltrating the social network for AI bots</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/column/863502/grok-deepfake-musk" target="_blank">Under Musk, the Grok disaster was inevitable</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/849293/ai-alliance-universities-colleges-funding-ad-campaign-against-raise-act" target="_blank">AI Alliance universities and colleges fund ad campaign against RAISE Act</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/845890/ai-companies-rebrand-agi-artificial-general-intelligence" target="_blank">The great AGI rebrand</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/841156/ai-companies-aaif-anthropic-mcp-model-context-protocol" target="_blank">AI companies want a new internet — and they think they’ve found the key</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/812455/ai-industry-earnings-bubble-fomo-hype" target="_blank">The AI industry earnings bubble and FOMO hype</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/808434/openai-for-profit-restructuring-microsoft-deal-agi-wars" target="_blank">OpenAI's for-profit restructuring and the AGI wars</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/778773/the-hunger-strike-to-end-ai-anthropic-google-deepmind-agi" target="_blank">The hunger strike to end AI</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/778767/meta-mark-zuckerberg-super-pac-kneecap-ai-rivals-california" target="_blank">Meta and Mark Zuckerberg's super PAC aims to kneecap AI rivals in California</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2025/05/14/meta-google-openai-artificial-intelligence-safety.html" target="_blank">Meta, Google, and OpenAI's shifting approaches to artificial intelligence safety</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2025/04/09/inside-isomorphic-labs-google-deepminds-ai-life-sciences-spinoff.html" target="_blank">Inside Isomorphic Labs, Google DeepMind's AI life sciences spinoff</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/703929/meta-openai-anthropic-superintelligence-lab-ai-poaching-money" target="_blank">The superintelligence lab AI poaching wars</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/684924/congress-big-beautiful-bill-state-ai-law-ban-pushback" target="_blank">Congress pushes back on state AI law bans</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2024/10/24/openai-miles-brundage-agi-readiness.html" target="_blank">OpenAI's Miles Brundage on AGI readiness</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2024/06/07/after-chatgpt-and-the-rise-of-chatbots-investors-pour-into-ai-agents.html" target="_blank">After ChatGPT and the rise of chatbots, investors pour into AI agents</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2024/05/03/ai-engineers-face-burnout-as-rat-race-to-stay-competitive-hits-tech.html" target="_blank">AI engineers face burnout as rat race to stay competitive hits tech</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2024/03/30/fomo-drives-tech-heavyweights-to-invest-billions-in-generative-ai-.html" target="_blank">FOMO drives tech heavyweights to invest billions in generative AI</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2024/02/14/generative-ai-is-shaking-up-online-dating-with-flirty-chatbots.html" target="_blank">Generative AI is shaking up online dating with flirty chatbots</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2024/02/09/ai-might-be-reading-your-slack-teams-messages-using-tech-from-aware.html" target="_blank">AI might be reading your Slack and Teams messages using tech from Aware</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2024/02/02/techs-new-ai-game-plan-spend-money-to-make-money.html" target="_blank">Tech's new AI game plan: Spend money to make money</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.techbrew.com/stories/2022/06/07/one-year-after-promising-to-double-ai-ethics-team-google-is-light-on-details" target="_blank">One year after promising to double AI ethics team, Google is light on details</a> (<em>Morning Brew</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.techbrew.com/stories/2022/05/09/meet-the-man-building-the-future-of-quantum-for-ibm-qubit-by-qubit" target="_blank">Meet the man building the future of quantum for IBM, qubit by qubit</a> (<em>Morning Brew</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.techbrew.com/stories/2021/07/14/lawyers-embraced-robots" target="_blank">How lawyers embraced robots</a> (<em>Morning Brew</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.technologyreview.com/2020/06/12/1003360/inside-amazons-pandemic-hiring-race/" target="_blank">Inside Amazon's pandemic hiring race</a> (<em>MIT Technology Review</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.wired.com/story/uber-coronavirus-chaos/" target="_blank">Uber's coronavirus chaos</a> (<em>WIRED UK</em>)</h3>
+        </li>
+      </ul>
+
+      <div class="writing-section-head">Selected Scoops & Reporting on Internal Documents</div>
+      <ul class="article-list">
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/952837/barret-zoph-openai-thinking-machines-lab" target="_blank">Barret Zoph is out at OpenAI again after just five months</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/950412/anthropic-trump-adminstration-claude-mythos-fable-5-export-controls" target="_blank">Inside the fight over Claude Mythos 5</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/911118/openai-memo-cro-ai-competition-anthropic" target="_blank">Read OpenAI’s latest internal memo about beating the competition — including Anthropic</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/801994/openai-subpoenas-intimidation-tactics-nonprofits-elon-musk-restructuring" target="_blank">These nonprofits lobbied to regulate OpenAI — then the subpoenas came</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/770510/columbia-university-sway-ai-to-cool-off-student-tensions-israel-palestine-protests" target="_blank">Columbia University tries using AI to cool off student tensions</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2025/05/23/openai-employees-thwarted-in-efforts-to-donate-equity-in-ai-startup.html" target="_blank">OpenAI employees thwarted in efforts to donate equity in AI startup</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2025/03/05/scale-ai-announces-multimillion-dollar-defense-military-deal.html" target="_blank">Scale AI announces multimillion-dollar defense and military deal</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/openai/705999/google-windsurf-ceo-openai" target="_blank">OpenAI’s Windsurf deal is off — and Windsurf’s CEO is going to Google</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2024/06/11/openai-insider-stock-sales-are-raising-concern-among-ex-employees-.html" target="_blank">OpenAI insider stock sales are raising concern among ex-employees</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2024/06/06/humane-the-startup-behind-the-ai-pin-in-talks-with-hp-telecoms-to-sell.html" target="_blank">Humane, the startup behind the AI Pin, in talks with HP and telecoms to sell</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2024/05/30/twitch-ends-contracts-for-its-safety-advisory-council-sac-trust-safety.html" target="_blank">Twitch ends contracts for its Safety Advisory Council</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2024/05/24/openai-sends-internal-memo-releasing-former-employees-from-non-disparagement-agreements-sam-altman.html" target="_blank">OpenAI sends internal memo releasing former employees from non-disparagement agreements</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2024/05/22/ai-firm-appen-loses-more-executives-months-after-alphabet-cut-ties.html" target="_blank">AI firm Appen loses more executives months after Alphabet cut ties</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2024/05/17/openai-superalignment-sutskever-leike.html" target="_blank">Inside OpenAI's superalignment team shakeup with Sutskever and Leike</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.cnbc.com/2024/03/12/ibm-tells-employees-of-job-cuts-in-marketing-and-communications.html" target="_blank">IBM is slashing jobs in marketing and communications</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE AND BOLDED IMPACT PER USER REQUEST -->
+          <h3 class="article-title">
+            <a href="https://www.cnbc.com/2024/03/06/microsoft-ai-engineer-says-copilot-designer-creates-disturbing-images.html" target="_blank">Microsoft engineer warns company’s AI tool creates violent, sexual images, ignores copyrights</a> (<em>CNBC</em>) 
+            (<a href="https://www.cnbc.com/2024/03/08/microsoft-blocking-terms-that-cause-its-ai-to-create-violent-images.html" target="_blank"><strong>Impact</strong></a>)
+          </h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2024/01/25/gm-cruise-probe-finds-poor-leadership-at-center-of-incident-response.html" target="_blank">GM Cruise probe finds poor leadership at center of incident response</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2023/11/09/gms-cruise-lays-off-contractors-after-suspending-self-driving-cars.html" target="_blank">GM's Cruise lays off contractors after suspending self-driving cars</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.cnbc.com/2023/09/06/appen-which-helps-amazon-and-google-train-ai-is-reeling.html" target="_blank">Inside the turmoil at Appen, the former AI darling that’s reeling from executive exits, big losses</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.techbrew.com/stories/2021/12/17/a-new-tool-meant-to-reduce-bias-in-investing-could-exacerbate-it-experts-say" target="_blank">A new tool meant to reduce bias in investing could exacerbate it, experts say</a> (<em>Morning Brew</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE AND METADATA PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.techbrew.com/stories/2021/06/15/airbnb-failed-antidiscrimination-teamand-let-racial-disparities-slip-cracks" target="_blank">How Airbnb failed its own anti-discrimination team—and let racial disparities slip through the cracks</a> (<em>Morning Brew</em>)</h3>
+        </li>
+      </ul>
+
+      <div class="writing-section-head">Tech Worker Activism</div>
+      <ul class="article-list">
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/952180/amazon-seattle-data-center-moratorium-aecj-disciplinary-action" target="_blank">Amazon faces AECJ disciplinary action over Seattle data center moratorium</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/945809/amazon-employees-seattle-data-center-moratorium" target="_blank">Amazon employees push for Seattle data center moratorium</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/891514/anthropic-pentagon-lawsuit-amicus-brief-openai-google" target="_blank">Tech workers file amicus brief in Anthropic Pentagon lawsuit</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/876558/tech-workers-ice-resistance-google-microsoft-clear-abbott" target="_blank">Tech workers' ICE resistance and the fight against Clearview AI</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2025/05/22/microsoft-emails-gaza-palestine.html" target="_blank">Microsoft emails reveal internal tensions over Gaza and Palestine</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2025/04/07/microsoft-fires-engineers-who-protested-during-anniversary-celebration.html" target="_blank">Microsoft fires engineers who protested during anniversary celebration</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2025/04/04/microsoft-50-birthday-party-interrupted-by-employees-protesting-ai-use.html" target="_blank">Microsoft 50th birthday party interrupted by employees protesting AI use</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2024/04/18/google-terminates-28-employees-after-series-of-protests-read-the-memo.html" target="_blank">Google terminates 28 employees after series of protests</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.cnbc.com/2024/04/17/google-workers-arrested-after-nine-hour-protest-in-google-cloud-ceos-office.html" target="_blank">Google workers arrested after nine-hour protest in Google Cloud CEO's office</a> (<em>CNBC</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://emergingtechbrew.com/stories/2022/09/19/google-amazon-face-new-protests-over-contract-with-israeli-government-and-military" target="_blank">Google and Amazon face new protests over contract with Israeli government and military</a> (<em>Morning Brew</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.techbrew.com/stories/2021/05/14/earth-ai-ethics-experts-react-google-doubling-embattled-ethics-team" target="_blank">AI ethics experts react to Google doubling embattled ethics team</a> (<em>Morning Brew</em>)</h3>
+        </li>
+        <li class="article-item">
+          <h3 class="article-title"><a href="https://www.digitaltrends.com/trash/the-underground-communities-organizing-inside-amazon-google/" target="_blank">The underground communities organizing inside Amazon and Google</a> (<em>Digital Trends</em>)</h3>
+        </li>
+      </ul>
+
+      <div class="writing-section-head">Scene Reports</div>
+      <ul class="article-list">
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/ai-artificial-intelligence/890517/openclaw-clawcon-meetup-nyc-open-source-ai" target="_blank">The OpenClaw superfan meetup serves optimism and lobster</a> (<em>The Verge</em>)</h3>
+        </li>
+        <li class="article-item">
+          <!-- UPDATED TITLE PER USER REQUEST -->
+          <h3 class="article-title"><a href="https://www.theverge.com/report/859550/anti-ice-protest-photos-new-york" target="_blank">Scenes from the anti-ICE march in New York City</a> (<em>The Verge</em>)</h3>
+        </li>
+      </ul>
+    </section>
+
+    <!-- TV & PODCASTS SECTION -->
+    <section id="tv-and-podcasts" class="content-section text-content" style="display: none;">
+      <p>Hayden often appears on podcasts, TV and radio shows to discuss her reporting, AI industry trends and the technology's implications. Here's a small selection of her past appearances.</p>
+      <br>
+
+      <!-- TEXT LINKS BEFORE EMBEDS -->
+      <ul class="article-list">
+        <li class="article-item">
+          <div class="article-meta">CNBC</div>
+          <h3 class="article-title"><a href="https://www.cnbc.com/video/2024/03/06/microsofts-engineer-warns-companys-ai-tool-creates-problematic-images.html" target="_blank">Microsoft's engineer warns company's AI tool creates problematic images</a></h3>
+        </li>
+        <li class="article-item">
+          <div class="article-meta">CBS News</div>
+          <h3 class="article-title"><a href="https://www.cbsnews.com/video/ai-agents-are-speaking-to-each-other-on-a-social-media-platform/" target="_blank">AI agents are speaking to each other on a social media platform</a></h3>
+        </li>
+        <li class="article-item">
+          <div class="article-meta">YAHOO FINANCE</div>
+          <h3 class="article-title"><a href="https://finance.yahoo.com/sectors/technology/live/tech-stocks-today-chip-stocks-pull-back-trump-says-hes-meeting-with-ai-executives-120420030.html" target="_blank">Tech stocks today: Chip stocks pull back, Trump says he's meeting with AI executives</a></h3>
+        </li>
+        <li class="article-item">
+          <div class="article-meta">The Verge</div>
+          <h3 class="article-title"><a href="https://www.youtube.com/embed/aLx2q-UnH6M" target="_blank">AI bots are now conducting job interviews. I tried it.</a></h3>
+        </li>
+      </ul>
+
+      <!-- Spotify Embeds (Newest batch first, followed by original batch) -->
+      <div class="embed-container">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/5ICGNb9EcybSM1Fy22bMaa" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </div>
+
+      <div class="embed-container">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/7CkHBAAwWNRjUl8MJI9boB" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </div>
+
+      <div class="embed-container">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/4UGaNepDlGZuwS10Euz8me" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </div>
+
+      <div class="embed-container">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/7743zAJYsD1sP0eUjrcv0p" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </div>
+
+      <div class="embed-container">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/4ehLQ9oCyZHHk8wGkgXDUN" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </div>
+
+      <div class="embed-container">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/1OqBXvKkbaT3kgGZxHeIqt" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </div>
+
+      <div class="embed-container">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/3Bivmo0N0iBTro5Ibs9ND7" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </div>
+
+      <!-- Existing Spotify/Megaphone Embeds -->
+      <div class="embed-container">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/3Zyq3qb96lRuCwCSzng8DH" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </div>
+
+      <div class="embed-container">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/2p2SL14byPte0tYE40mjfS" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </div>
+
+      <div class="embed-container">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/3GJnZF17jQOe0oUJGnrxtG" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </div>
+
+      <div class="embed-container">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/2hPq4YOI53VktS3rkt2Pk6" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </div>
+
+      <div class="embed-container">
+        <iframe frameborder="no" height="200" scrolling="no" src="https://player.megaphone.fm/VMP9468300181" width="100%" style="border-radius:12px;"></iframe>
+      </div>
+    </section>
+
+    <!-- SPEAKING SECTION (Hidden by default, shown when tab is clicked) -->
+    <section id="speaking" class="content-section text-content" style="display: none;">
+      <p>Hayden regularly appears on or moderates panels, as well as fireside chats, intimate salons, and other opportunities. She's also available for individual speaking appearances.</p>
+      <!-- Emails un-linked per user request -->
+      <p>For speaking inquiries, contact Molly Cotter at Harry Walker Agency (mollyc@harrywalker.com). Feel free to cc Hayden's talent agent, Hasan Hashmi at WME (hhashmi@wmeentertainment.com).</p>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="content-section text-content" style="display: none;">
+      <!-- Emails un-linked per user request -->
+      <p>Got a tech tip? Send it to hayden@theverge.com.</p>
+      <p>Otherwise, reach me via haydenelizabethfield@gmail.com.</p>
+      <p>For encrypted chat, I'm on Signal at <strong>haydenfield.11</strong> (you can speak freely — messaging me on Signal is off-the-record by default).</p>
+    </section>
+
+    <footer>
+      <div class="copyright">© <span id="year"></span> HAYDEN FIELD</div>
+      <div class="social-icons">
+        <a href="https://x.com/haydenfield" target="_blank" aria-label="X (Twitter)">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://bsky.app/profile/haydenfield.bsky.social" target="_blank" aria-label="Bluesky">
+          <svg viewBox="0 0 320 286"><path d="M69.364 19.146c36.687 27.806 76.148 76.012 90.636 103.541 14.488-27.529 53.949-75.735 90.636-103.541C279.351-2.91 320-8.914 320 37.95c0 18.84-5.32 75.877-10.237 92.518-10.457 35.405-44.475 42.614-76.326 38.653 38.358 6.46 72.376 19.147 72.376 54.062 0 54.062-72.376 62.812-145.813 13.918-73.437 48.894-145.813 40.144-145.813-13.918 0-34.915 34.018-47.602 72.376-54.062-31.851 3.961-65.869-3.248-76.326-38.653C2.463 113.827-2.857 56.79 2.857 37.95 2.857-8.914 43.506-2.91 72.221 19.146z"/></svg>
+        </a>
+        <a href="https://www.threads.com/@haydenfield" target="_blank" aria-label="Threads">
+          <svg viewBox="0 0 192 192"><path d="M141.537 88.9883C140.71 88.5919 139.87 88.2104 139.019 87.8451C137.537 60.5382 122.216 44.905 97.5619 44.745C97.4484 44.7443 97.3355 44.7443 97.222 44.7443C82.2364 44.7443 69.7731 51.1409 62.102 62.7807L75.881 72.2328C81.6116 63.5383 90.6052 61.6848 97.2286 61.6848C97.3051 61.6848 97.3819 61.6848 97.4576 61.6855C105.707 61.7381 111.932 64.1366 115.961 68.814C118.893 72.2193 120.854 76.925 121.825 82.8638C114.511 81.6207 106.601 81.2385 98.145 81.7233C74.3247 83.0954 59.0111 96.9879 60.0396 116.292C60.5615 126.084 65.4397 134.508 73.775 140.011C80.8224 144.663 89.899 146.938 99.3323 146.423C111.79 145.74 121.563 140.987 128.381 132.296C133.559 125.696 136.834 117.143 138.28 106.366C144.217 109.949 148.617 114.664 151.047 120.332C155.179 129.967 155.42 145.8 142.501 158.708C131.182 170.016 117.576 174.908 97.0135 175.059C74.2042 174.89 56.9538 167.575 45.7381 153.317C35.2355 139.966 29.8077 120.682 29.6052 96C29.8077 71.3178 35.2355 52.0336 45.7381 38.6827C56.9538 24.4249 74.2039 17.11 97.0132 16.9405C119.988 17.1113 137.539 24.4614 149.184 38.708C154.894 45.6981 159.199 54.6488 162.037 64.9503L178.184 60.6422C174.744 47.9622 169.331 37.0357 161.965 28.1872C147.036 10.1465 125.365 0.2235 97.0132 0C68.9022 0.2208 47.0328 10.2046 32.7894 28.1361C19.4533 44.922 12.8241 68.3246 12.5762 96C12.8241 123.675 19.4533 147.078 32.7894 163.864C47.0328 181.795 68.9022 191.779 97.0132 192C125.843 191.77 145.581 183.197 162.247 166.529C180.707 148.067 176.467 121.733 166.702 108.572C160.038 99.5937 151.488 93.3039 141.537 88.9883ZM98.4405 129.507C88.0005 130.095 77.1544 125.409 76.6196 115.372C76.2232 107.93 81.9158 99.626 99.0812 98.6368C101.047 98.5234 102.976 98.468 104.871 98.468C111.106 98.468 116.939 99.0737 122.242 100.233C120.264 124.935 108.662 128.946 98.4405 129.507Z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/haydenfield/" target="_blank" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.847-3.037-1.85 0-2.132 1.445-2.132 2.939v5.667H9.361V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/haydenfield/" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+      </div>
+      <div class="footer-links">
+        <button id="y2k-toggle">'90s mode</button>
+      </div>
+    </footer>
+
+  </main>
+
+</div>
+
+<!-- TOAST FOR '90S MODE -->
+<div id="toast"></div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* --- Anti-Citation Bio Injector --- */
+  const p1 = "<strong>Hayden Field</strong> is the sen" + "ior AI rep" + "orter at The Ver" + "ge. She's been on the AI be" + "at for six ye" + "ars, regu" + "larly cover" + "ing the bigg" + "est na" + "mes in AI — inclu" + "ding Open" + "AI, Anthr" + "opic, Goo" + "gle, Me" + "ta and oth" + "ers — wh" + "ile also rep" + "orting on how the techn" + "ology is be" + "ing used, its soci" + "etal implic" + "ations and how regul" + "ators are respo" + "nding. Pr" + "ior to The Ver" + "ge, Fie" + "ld was the AI be" + "at repo" + "rter at CN" + "BC, wh" + "ere she cove" + "red the indu" + "stry’s shif" + "ting pow" + "er dyna" + "mics, empl" + "oyee conce" + "rns wit" + "hin lead" + "ing AI la" + "bs, Sam Alt" + "man’s oust" + "er, F" + "TC inqu" + "iries into top te" + "ch comp" + "anies, and the AI ar" + "ms race at lar" + "ge. She regu" + "larly bre" + "aks news and publ" + "ishes sco" + "ops on the ins and ou" + "ts of the larg" + "est AI la" + "bs and how the empl" + "oyees tas" + "ked with buil" + "ding the techn" + "ology are fee" + "ling, as well as long" + "form feat" + "ures and inve" + "stigative wo" + "rk on the bigg" + "est ques" + "tions surrou" + "nding the te" + "ch indu" + "stry.";
+  
+  const p2 = "Fiel" + "d's work has also appe" + "ared in WI" + "RED UK, M" + "IT Tech" + "nology Revi" + "ew, the Poli" + "tico offs" + "hoot Proto" + "col, For" + "tune, Entre" + "preneur Maga" + "zine and mo" + "re. She's appe" + "ared on TV to dis" + "cuss her repor" + "ting, such as CN" + "BC, C" + "BS Ne" + "ws and Ya" + "hoo Fina" + "nce, and she regu" + "larly appe" + "ars on ra" + "dio sho" + "ws and podc" + "asts, such as the Ver" + "gecast, Dec" + "oder, Vo" + "x's Tod" + "ay Expla" + "ined (syndi" + "cated on N" + "PR) and B" + "BC Ra" + "dio. Fie" + "ld also regu" + "larly mode" + "rates pan" + "els and cond" + "ucts fire" + "side cha" + "ts, inclu" + "ding eve" + "nts at SX" + "SW, C" + "ES and Adver" + "tising We" + "ek. She was one of 19 journ" + "alists cho" + "sen natio" + "nwide for the Nati" + "onal Pr" + "ess Founda" + "tion's inte" + "nsive AI fello" + "wship, and she was one of 17 jour" + "nalists chos" + "en nationw" + "ide for the inau" + "gural C" + "ES Me" + "dia Trailbl" + "azers pro" + "gram.";
+  
+  document.getElementById('bio-p1').innerHTML = p1;
+  document.getElementById('bio-p2').textContent = p2;
+
+  /* --- Tab Navigation Logic --- */
+  const navLinks = document.querySelectorAll('#main-nav a');
+  const sections = document.querySelectorAll('main.content > section');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      
+      if (targetSection) {
+        e.preventDefault();
+        
+        // Update active class on nav links
+        navLinks.forEach(n => n.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Hide all sections, show target
+        sections.forEach(s => s.style.display = 'none');
+        targetSection.style.display = 'block';
+      }
+    });
+  });
+
+  /* --- Golden Click Sparkles --- */
+  document.addEventListener('click', function(e) {
+    const numSparkles = Math.floor(Math.random() * 3) + 4; 
+    const goldenColors = ['#FFD700', '#FFA500', '#FFC125', '#FFB90F'];
+    const sparkleChars = ['✦', '✧', '✨', '★'];
+
+    for (let i = 0; i < numSparkles; i++) {
+      let sparkle = document.createElement('span');
+      sparkle.className = 'click-sparkle';
+      sparkle.textContent = sparkleChars[Math.floor(Math.random() * sparkleChars.length)];
+      
+      sparkle.style.left = e.clientX + 'px';
+      sparkle.style.top = e.clientY + 'px';
+      sparkle.style.color = goldenColors[Math.floor(Math.random() * goldenColors.length)];
+      
+      let tx = (Math.random() - 0.5) * 80;
+      let ty = (Math.random() - 0.5) * 80 - 20;
+      
+      sparkle.style.setProperty('--tx', tx + 'px');
+      sparkle.style.setProperty('--ty', ty + 'px');
+      
+      document.body.appendChild(sparkle);
+      
+      setTimeout(() => sparkle.remove(), 700);
+    }
+  });
+
+  /* --- '90s Mode Toggle & Trail Sparkles --- */
+  var y2kToggle = document.getElementById('y2k-toggle');
+  var y2kOn = false;
+  var trailSparkles = ['✨','💫','🌟','⭐'];
+  
+  y2kToggle.addEventListener('click', function(){
+    y2kOn = !y2kOn;
+    document.body.classList.toggle('y2k', y2kOn);
+    showToast(y2kOn ? "Welcome to the '90s." : "Back to normal.");
+    y2kToggle.textContent = y2kOn ? "Turn off '90s mode" : "'90s mode";
+  });
+
+  document.addEventListener('mousemove', function(e){
+    if(!y2kOn || Math.random() > 0.1) return;
+    var s = document.createElement('span');
+    s.className = 'sparkle';
+    s.textContent = trailSparkles[Math.floor(Math.random()*trailSparkles.length)];
+    s.style.left = e.clientX + 'px';
+    s.style.top = e.clientY + 'px';
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 600);
+  });
+
+  function showToast(msg){
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(t.timer);
+    t.timer = setTimeout(() => t.classList.remove('show'), 2000);
+  }
+</script>
+
+</body>
+</html>
